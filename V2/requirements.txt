@@ -1,0 +1,6 @@
+Pillow
+Pyro5
+serpent
+requests
+python-dotenv
+
