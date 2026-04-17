@@ -21,7 +21,7 @@ def iniciar_nodos():
     for cfg in NODOS:
         env_path = os.path.join(os.path.dirname(__file__), cfg["env"])
         if not os.path.exists(env_path):
-            print(f"⚠️  No se encontró {cfg['env']} — cópialo desde .env.ejemplo")
+            print(f" No se encontró {cfg['env']} — cópialo desde .env.ejemplo")
             continue
 
         # Cada nodo hereda el entorno del sistema + su propio .env
@@ -39,13 +39,13 @@ def iniciar_nodos():
             cwd=os.path.dirname(__file__)
         )
         procesos.append((cfg["nombre"], proc))
-        print(f"✅ {cfg['nombre']} iniciado (PID {proc.pid})")
+        print(f" {cfg['nombre']} iniciado (PID {proc.pid})")
         time.sleep(0.5)   # pequeña pausa para que no colisionen al arrancar
 
-    print(f"\n🚀 {len(procesos)} nodos corriendo. Presiona Ctrl+C para detener todos.\n")
+    print(f"\n {len(procesos)} nodos corriendo. Presiona Ctrl+C para detener todos.\n")
 
     def apagar(sig, frame):
-        print("\n🛑 Apagando nodos...")
+        print("\nApagando nodos...")
         for nombre, proc in procesos:
             proc.terminate()
             print(f"   {nombre} detenido")
@@ -59,7 +59,7 @@ def iniciar_nodos():
         time.sleep(5)
         for nombre, proc in procesos:
             if proc.poll() is not None:
-                print(f"⚠️  {nombre} se detuvo inesperadamente (código {proc.returncode})")
+                print(f" {nombre} se detuvo inesperadamente (código {proc.returncode})")
 
 
 if __name__ == "__main__":
